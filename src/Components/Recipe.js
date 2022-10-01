@@ -1,13 +1,12 @@
-import React from 'react';
- const Recipe = ({title,calories,image,foodContentsLabel}) => {
+import React,{useState} from 'react';
 
-    // const usingObjectAssign = foodContentsLabel.split(";");
+const Recipe = ({title,calories,image}) => {
+
+    const [recipes,setRecipes] = useState([]);
+
     return(
         <div className="food">
             <h3>{title}</h3>
-            {/* <ol>
-                {usingObjectAssign.split(";")}
-            </ol> */}
             <p>calories : {calories}</p>
             <img src={image} alt={title} />
         </div>

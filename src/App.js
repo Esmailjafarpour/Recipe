@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 import Recipe from './Components/Recipe';
+import RecipeDetails from './Components/RecipeDetails'
 
 function App() {
   // https://developer.edamam.com/admin/applications
@@ -21,15 +22,20 @@ function App() {
     const response = await fetch(`https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${APP_KEY}&ingr=${query}&nutrition-type=cooking`);
     const data =  await response.json();
     setRecipes(data.hints);
-    console.log(data);
+    console.log("recipe",recipes)
+
   }
 
   const updateSearch = (e) => {
+
       setSearch(e.target.value)
   }
 
   const getSearch = (e) => {
     e.preventDefault();
+    if(!search){
+      return
+    }
     setQuery(search);
     setSearch("");
   }
@@ -37,26 +43,38 @@ function App() {
 
   return (
     <div className="App">
+
       <form className="search-form" onSubmit={getSearch}>
         <input type="text" className="search-bar" type="text" value={search} onChange={updateSearch}/>
         <button type="submit" className="search-button">Submit</button>
       </form>
+
       <main className="main">
-        {recipes.map((recipe) => (
-          <div className="content">
+
+        {recipes.map((recipe,index) => (
+          
+          <div className="content" key={index}>
+
             <Recipe
               title={recipe.food.label}
               calories={recipe.food.nutrients.ENERC_KCAL}
               image={recipe.food.image}
-              foodContentsLabel={recipe.food.foodContentsLabel}
             />
+
+            <RecipeDetails
+                foodContentsLabel={recipe.food.foodContentsLabel}
+            />
+
           </div>
           
-        ))}
+        ))
+
+        }
+
       </main>
       
-
     </div>
+
   );
 }
 
