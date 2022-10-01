@@ -243,7 +243,5 @@
     display: flex;
   }
   
-  .content:nth-of-type(even)>.food{
-    
-  }
+
 }
