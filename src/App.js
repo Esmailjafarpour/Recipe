@@ -7,6 +7,7 @@ import RecipeDetails from './Components/RecipeDetails'
 
 function App() {
   // https://developer.edamam.com/admin/applications
+  // https://developer.edamam.com/food-database-api-docs
   const APP_ID = "5c055362";
   const APP_KEY = "e80283c7fa939e5a4c278b5083147f46";
   // const exampleRequest= `https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${APP_KEY}&ingr=shout`;
